@@ -73,8 +73,11 @@ namespace Herencia
             Licenciatura lic = new Licenciatura("Zoe", "Star", "2325742B", "Cyber", "Google");
             Posgrado pos = new Posgrado("Dante", "Mojica", "242120022", "Alacranes");
             a.Imprime();
+            a.ToString();
             lic.Imprime();
+            lic.ToString();
             pos.Imprime();
+            pos.ToString();
         }
     }
 }

@@ -1,19 +1,9 @@
-﻿interface IBaterista
+﻿interface IAccion
 {
-    void Tambor();
-    void Platillo();
-}
-interface IBajista
-{
-    void Corto();
-    void Alto();
-}
-interface IGuitarrista
-{
-    void Solo();
     void Tocar();
 }
-class Musico
+
+class Musico : IAccion
 {
     public string Nombre;
     public string Apellido;
@@ -25,48 +15,40 @@ class Musico
         Apellido = apellido;
         NombreArtistico = nombreartistico;
     }
+    public virtual void Tocar()
+    {
+        Console.WriteLine($"{NombreArtistico} Empieza a tocar su instrumento");
+    }
 }
 
-class Baterista : Musico, IBaterista
+class Baterista : Musico
 {
     public Baterista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
     }
-    public void Tambor()
+    public override void Tocar()
     {
-        Console.WriteLine($"{NombreArtistico} Toca los tambores");
-    }
-    public void Platillo()
-    {
-        Console.WriteLine($"{NombreArtistico} Toca los platillos");
+        Console.WriteLine($"{NombreArtistico} Empieza a tocar sus tambores");
     }
 }
 
-class Bajista : Musico, IBajista
+class Bajista : Musico
 {
     public Bajista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
     }
-    public void Corto()
+    public override void Tocar()
     {
-        Console.WriteLine($"{NombreArtistico} Realiza un sono alto");
-    }
-    public void Alto()
-    {
-        Console.WriteLine($"{NombreArtistico} Realiza un sono bajo");
+        Console.WriteLine($"{NombreArtistico} Empieza a tocar su bajo");
     }
 }
 
-class Guitarrista : Musico, IGuitarrista
+class Guitarrista : Musico
 {
     public Guitarrista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
     }
-    public void Solo()
-    {
-        Console.WriteLine($"{NombreArtistico} Realiza un solo");
-    }
-    public void Tocar()
+    public override void Tocar()
     {
         Console.WriteLine($"{NombreArtistico} Empieza a tocar su guitarra");
     }
@@ -76,6 +58,18 @@ class Program
 {
     static void Main()
     {
-        
+        var musico1 = new Baterista("Jose","Rose","Killer");
+        var musico2 = new Bajista("Eve","Pocho","Mino");
+        var musico3 = new Guitarrista("Farfa","Abyss","Burning");
+        List<Musico> musicos = new();
+        musicos.Add(musico1);
+        musicos.Add(musico2);
+        musicos.Add(musico3);
+
+        foreach (var Mus in musicos)
+        {
+            Mus.Tocar();
+        }
+
     }
 }

@@ -20,6 +20,15 @@ class Baterista : Musico
     public Baterista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
     }
+    public override void Saluda()
+    {
+        Console.WriteLine($"{NombreArtistico} Toca sus tambores Y saluda al publico");
+    }
+    public override void Afina()
+    {
+        Console.WriteLine($"{NombreArtistico} Acomoda sus tambores y afina sus platillos");
+    }
+
     public override void Tocar()
     {
         Console.WriteLine($"{NombreArtistico} Empieza a tocar sus tambores");
@@ -31,6 +40,14 @@ class Bajista : Musico
     public Bajista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
     }
+    public override void Saluda()
+    {
+        Console.WriteLine($"{NombreArtistico} Saluda levantando su mano derecha");
+    }
+    public override void Afina()
+    {
+        Console.WriteLine($"{NombreArtistico} Afina su bajo");
+    }
     public override void Tocar()
     {
         Console.WriteLine($"{NombreArtistico} Empieza a tocar su bajo");
@@ -41,6 +58,14 @@ class Guitarrista : Musico
 {
     public Guitarrista(string nombre, string apellido, string nombreartistico):base(nombre, apellido, nombreartistico)
     {
+    }
+    public override void Saluda()
+    {
+        Console.WriteLine($"{NombreArtistico} Saluda al publico");
+    }
+    public override void Afina()
+    {
+        Console.WriteLine($"{NombreArtistico} Afina su guitarra");
     }
     public override void Tocar()
     {
@@ -62,6 +87,8 @@ class Program
 
         foreach (var Mus in musicos)
         {
+            Mus.Saluda();
+            Mus.Afina();
             Mus.Tocar();
         }
 

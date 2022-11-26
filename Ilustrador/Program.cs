@@ -10,11 +10,6 @@ abstract class Figura : IComparable
     protected double area;
     protected string color;
 
-    public override string ToString()
-    {
-        return String.Format($"{color} {x} {y}");
-    }
-
     public Figura (int x, int y, double area, string color)
     {
         this.x = x;
@@ -22,11 +17,13 @@ abstract class Figura : IComparable
         this.area = area;
         this.color = color;
     }
-    public int CompareTo(object obj)
+
+    public abstract void Dibuja();
+
+    public double CompareTo(object obj)
     {
         return this.area.CompareTo(((Figura)obj).area);
     }
-    public abstract void Dibuja();
 }
 
 class Circulo : Figura
@@ -35,7 +32,7 @@ class Circulo : Figura
 
     public override void Dibuja()
     {
-        Console.WriteLine($"Se dibuja un circulo de color {base.ToString}");
+        Console.WriteLine($"Se dibuja un circulo {color} {x} {y} con un area de {area}");
     }
 }
 
@@ -45,7 +42,7 @@ class Rectangulo : Figura
 
     public override void Dibuja()
     {
-        Console.WriteLine($"Se dibuja un rectangulo {base.ToString}");
+        Console.WriteLine($"Se dibuja un rectangulo {color} {x} {y} con un area de {area}");
     }
 }
 class Program

@@ -1,54 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace figura
+//Programa de figuras con clases abstractas
+//Interface del area para utilizar IComparable
+//Metodo abstracto decimal Area
+//2 figuras Retctagulo, Circulo
+
+interface IComparable{}
+
+abstract class Figura : IComparable
 {
-    class Figura 
+    protected int x;
+    protected int y;
+    protected string color;
+
+    public Figura (int x, int y, string color)
     {
-        protected int x;
-        protected int y;
-        protected string color;
-
-        public Figura(int x, int y, string c){
-            this.x = x; this.y = y; color = c;
-        }
-
-        public void dibuja()
-        {
-            Console.WriteLine("Se dibuja una figura color {0}", 
-            color);
-        }
-
-        public void printColor() {
-            Console.WriteLine(color);
-        }
+        this.x = x;
+        this.y = y;
+        this.color = color;
     }
+    public abstract void Dibuja();
+}
 
-    class Circulo : Figura {
-        public Circulo(int x, int y, string c):base(x , y, c){
-        }
+class Circulo : Figura
+{
+    //x= radio y= diametro 
+    //Area = Pi*radio^2
+    public Circulo(int x, int y, string color):base(x, y, color){}
 
-        public new void dibuja(){
-            Console.WriteLine("Se dibuja un circulo {0}", color);
-        }
+    public override void Dibuja()
+    {
+        Console.WriteLine($"Se dibuja un circulo del color {color}");
     }
+}
 
-    class Rect : Figura {
-        public Rect(int x, int y, string c):base(x , y, c){
-            }
-        }
-    class Program{
-        static void Main(string[] args){
-            List<Figura> figuras = new List<Figura>();
-            figuras.Add(new Circulo(12,13,"verde")) ;
-            figuras.Add(new Rect(12,13,"azul")) ;
-            figuras.Add(new Rect(12,13,"rojo")) ;
-            figuras.Add(new Circulo(12,13,"rojo")) ;
-            foreach (var item in figuras){
-                item.dibuja();
-            }    
-            Circulo r = new Circulo(10,10,"rojo");   
-            r.dibuja();
-            }
-        }
+class Retctagulo : Figura
+{
+    //x= base y= altura
+    //Area = base * altura
+    public Rectangulo(int x, int y, string color):base(x, y, color){}
+
+    public override void Dibuja()
+    {
+        Console.WriteLine($"Se dibuja un rectangulo del color {color}");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Figura> figuras = new();
+        figuras.Add(new Circulo(12,13,"verde"));
+    }
 }

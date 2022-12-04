@@ -90,5 +90,23 @@ class Program
   static void Main()
   {
     Console.WriteLine("Lista de productos");
+    List<Product> products = new();
+    products.Add(new Product("HIF", "Halo Infinite", 3, 117, 59));
+    products.Add(new Product("HOM", "Hotline Miami", 4, 50, 29));
+    products.Add(new Product("HAF", "Half Life", 3, 1000, 19));
+    products.Add(new Product("CYP", "Cyberpunk 2077", 5, 2077, 59));
+
+    foreach(var prod in products)
+    Console.WriteLine(prod);
+    Console.WriteLine();
+
+    
+    //Archivos Bin
+    /*
+    ProductDB.SaveBin(products, @"productos.bin");
+    List<Product> productsArchivo = ProductDB.GetBin(@"productos.bin");
+    foreach(var pa in productsArchivo)
+    Console.WriteLine(pa);
+    */
   }
 }

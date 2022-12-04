@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-class Product
+class Product : IComparable
 {
   public string code {get; set;}
   public string description {get; set;}
@@ -20,10 +20,15 @@ class Product
     this.price = price;
   }
 
-    public override string ToString()
-    {
+  public override string ToString()
+  {
         return String.Format($"{code} {description} {departament} {likes} {price}");
-    }
+  }
+
+  public int CompareTo(object obj)
+  {
+    return this.likes.CompareTo((obj as Product).likes);
+  }
 }
 
 class ProductDB
@@ -95,6 +100,7 @@ class Program
     products.Add(new Product("HOM", "Hotline Miami", 4, 50, 29));
     products.Add(new Product("HAF", "Half Life", 3, 1000, 19));
     products.Add(new Product("CYP", "Cyberpunk 2077", 5, 2077, 59));
+    products.Sort();
 
     foreach(var prod in products)
     Console.WriteLine(prod);

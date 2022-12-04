@@ -3,46 +3,52 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-class Product
+class Producto
 {
-    public string Code { get; set; }
-    public string Description { get; set; }
-    public decimal Price { get; set; }
+    public string codigo {get; set;}
+    public string descripcion {get; set;}
+    public int departamento {get; set;}
+    public int likes {get; set;}
+    public decimal precio {get; set;}
 
-    public Product(string c, string d, decimal p)
-    { Code = c; Description = d; Price = p; }
+    public Producto(string codigo, string descripcion, int departamento, int likes, decimal precio)
+    {
+      this.codigo = codigo;
+      this.descripcion = descripcion;
+      this.departamento = departamento;
+      this.likes = likes;
+      this.precio = precio;
+    }
 
     public override string ToString()
     {
-        return String.Format($"{Code}  {Description} Precio:{Price}");
+        return String.Format($"Codigo: {codigo} Descripcion: {descripcion} Departamento: {departamento} Likes: {likes} Precio: {precio}");
     }
 }
 
-class ProductDB
+class ProductoDB
 {
-    public static void SaveText(List<Product> productos, String path)
+    public static void SaveText(List<Producto> productos, String path)
     {
-       StreamWriter sw = new StreamWriter(
-          new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write)
-          );
+      StreamWriter sw = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write));
 
       foreach (var producto in productos )
       {
-        sw.WriteLine($"{producto.Code}|{producto.Description}|{producto.Price}");
+        sw.WriteLine($"{producto.codigo}|{producto.descripcion}|{producto.departamento}|{producto.likes}|{producto.precio}");
       }
       sw.Close();
     }
    
-    public static void SaveBin(List<Product> products, String path)
+    public static void SaveBin(List<Producto> products, String path)
     {
-      BinaryWriter bw = new BinaryWriter(
-          new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write)
-          );
+      BinaryWriter bw = new BinaryWriter(new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write));
       foreach(var product in products)
       {
-        bw.Write(product.Code);
-        bw.Write(product.Description);
-        bw.Write(product.Price);
+        bw.Write(product.codigo);
+        bw.Write(product.descripcion);
+        bw.Write(product.departamento);
+        bw.Write(product.likes);
+        bw.Write(product.precio);
       }
       bw.Close();
     }

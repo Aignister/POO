@@ -7,27 +7,38 @@ class Product : IComparable
 {
   public string code {get; set;}
   public string description {get; set;}
-  public int departament {get; set;}
+  public int department {get; set;}
   public int likes {get; set;}
   public decimal price {get; set;}
 
-  public Product(string code, string description, int departament, int likes, decimal price)
+  public Product(string code, string description, int department, int likes, decimal price)
   {
     this.code = code;
     this.description = description;
-    this.departament = departament;
+    this.department = department;
     this.likes = likes;
     this.price = price;
   }
 
   public override string ToString()
   {
-        return String.Format($"{code} {description} {departament} {likes} {price}");
+        return String.Format($"{code} {description} {department} {likes} {price}");
   }
 
   public int CompareTo(object obj)
   {
     return this.likes.CompareTo((obj as Product).likes);
+  }
+
+  public static void GetDepartment(List<Product> products)
+  {
+    var productsf = products.Where(x => x.department == 3).ToList();
+    
+    foreach(var prod in productsf)
+    {
+      Console.WriteLine(prod);
+    }
+    Console.WriteLine();
   }
 }
 
@@ -39,7 +50,7 @@ class ProductDB
 
     foreach (var product in products)
     {
-      sw.WriteLine($"{product.code}|{product.description}|{product.departament}|{product.likes}|{product.price}");
+      sw.WriteLine($"{product.code}|{product.description}|{product.department}|{product.likes}|{product.price}");
     }
     sw.Close();
   }
@@ -52,7 +63,7 @@ class ProductDB
     {
       bw.Write(producto.code);
       bw.Write(producto.description);
-      bw.Write(producto.departament);
+      bw.Write(producto.department);
       bw.Write(producto.likes);
       bw.Write(producto.price);
     }
@@ -100,13 +111,13 @@ class Program
     products.Add(new Product("HOM", "Hotline Miami", 4, 50, 29));
     products.Add(new Product("HAF", "Half Life", 3, 1000, 19));
     products.Add(new Product("CYP", "Cyberpunk 2077", 5, 2077, 59));
-    products.Sort();
 
     foreach(var prod in products)
-    Console.WriteLine(prod);
+    {
+      Console.WriteLine(prod);
+    }
     Console.WriteLine();
 
-    
     //Archivos Bin
     /*
     ProductDB.SaveBin(products, @"productos.bin");
@@ -114,5 +125,15 @@ class Program
     foreach(var pa in productsArchivo)
     Console.WriteLine(pa);
     */
+
+    //Archivos Txt
+    /*
+    ProductDB.SaveText(products, @"productos.txt");
+    List<Product> productsText = ProductDB.GetText(@"productos.bin");
+    foreach(var pt in productsText)
+    Console.WriteLine(pt);
+    */
+
+    Product.GetDepartment(products);
   }
 }

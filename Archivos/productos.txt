@@ -1,0 +1,4 @@
+HIF|Halo Infinite|3|117|59
+HOM|Hotline Miami|4|50|29
+HAF|Half Life|3|1000|19
+CYP|Cyberpunk 2077|5|2077|59
